@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
-#import "GridMenu.h"
+#import "RNGridMenu.h"
 
-@interface RNViewController : UIViewController <GridMenuDelegate>
+@interface RNViewController : UIViewController <RNGridMenuDelegate>
 
 @end

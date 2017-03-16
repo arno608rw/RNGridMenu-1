@@ -1,6 +1,6 @@
 //
-//  GridMenu.h
-//  GridMenu
+//  RNGridMenu.h
+//  RNGridMenu
 //
 //  Created by Ryan Nystrom on 6/11/13.
 //  Copyright (c) 2013 Ryan Nystrom. All rights reserved.
@@ -9,15 +9,15 @@
 #import <UIKit/UIKit.h>
 
 
-typedef NS_ENUM(NSInteger, GridMenuStyle) {
-    GridMenuStyleGrid,
-    GridMenuStyleList
+typedef NS_ENUM(NSInteger, RNGridMenuStyle) {
+    RNGridMenuStyleGrid,
+    RNGridMenuStyleList
 };
 
 
-@class GridMenu;
+@class RNGridMenu;
 
-@interface GridMenuItem : NSObject
+@interface RNGridMenuItem : NSObject
 
 @property (nonatomic, readonly) UIImage *image;
 @property (nonatomic, readonly) NSString *title;
@@ -35,24 +35,24 @@ typedef NS_ENUM(NSInteger, GridMenuStyle) {
 
 @end
 
-@protocol GridMenuDelegate <NSObject>
+@protocol RNGridMenuDelegate <NSObject>
 @optional
-- (void)gridMenu:(GridMenu *)gridMenu willDismissWithSelectedItem:(GridMenuItem *)item atIndex:(NSInteger)itemIndex;
-- (void)gridMenuWillDismiss:(GridMenu *)gridMenu;
+- (void)gridMenu:(RNGridMenu *)gridMenu willDismissWithSelectedItem:(RNGridMenuItem *)item atIndex:(NSInteger)itemIndex;
+- (void)gridMenuWillDismiss:(RNGridMenu *)gridMenu;
 @end
 
 
-@interface GridMenu : UIViewController
+@interface RNGridMenu : UIViewController
 
 + (instancetype)visibleGridMenu;
 
 @property (nonatomic, readonly) UIView *menuView;
 
-// the menu items. Instances of GridMenuItem
+// the menu items. Instances of RNGridMenuItem
 @property (nonatomic, readonly) NSArray *items;
 
 // An optional delegate to receive information about what items were selected
-@property (nonatomic, weak) id<GridMenuDelegate> delegate;
+@property (nonatomic, weak) id<RNGridMenuDelegate> delegate;
 
 // The color that items will be highlighted with on selection.
 // default table view selection blue
@@ -95,8 +95,8 @@ typedef NS_ENUM(NSInteger, GridMenuStyle) {
 @property (nonatomic, assign) NSTextAlignment itemTextAlignment;
 
 // The list layout
-// default GridMenuStyleGrid
-@property (nonatomic, assign) GridMenuStyle menuStyle;
+// default RNGridMenuStyleGrid
+@property (nonatomic, assign) RNGridMenuStyle menuStyle;
 
 // An optional header view. Make sure to set the frame height when setting.
 @property (nonatomic, strong) UIView *headerView;
@@ -109,11 +109,11 @@ typedef NS_ENUM(NSInteger, GridMenuStyle) {
 @property (nonatomic, assign) BOOL bounces;
 
 // Initialize the menu with a list of menu items.
-// Note: this changes the view to style GridMenuStyleList if no images are supplied
+// Note: this changes the view to style RNGridMenuStyleList if no images are supplied
 - (instancetype)initWithItems:(NSArray *)items;
-// Initialize the menu with a list of images. Maintains style GridMenuStyleGrid
+// Initialize the menu with a list of images. Maintains style RNGridMenuStyleGrid
 - (instancetype)initWithImages:(NSArray *)images;
-// Initialize the menu with a list of titles. Note: this changes the view to style GridMenuStyleList since no images are supplied
+// Initialize the menu with a list of titles. Note: this changes the view to style RNGridMenuStyleList since no images are supplied
 - (instancetype)initWithTitles:(NSArray *)titles;
 
 // Show the menu

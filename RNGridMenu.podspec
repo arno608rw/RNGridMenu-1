@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.author          = { 'Ryan Nystrom' => 'rnystrom@whoisryannystrom.com'}
   s.source          = { :git => 'https://github.com/rnystrom/RNGridMenu.git', :tag => '0.1.3' }
 
-  s.source_files    = 'GridMenu.{h,m}'
+  s.source_files    = 'RNGridMenu.{h,m}'
 
   s.requires_arc    = true
 

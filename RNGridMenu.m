@@ -1,18 +1,18 @@
 //
-//  GridMenu.m
-//  GridMenu
+//  RNGridMenu.m
+//  RNGridMenu
 //
 //  Created by Ryan Nystrom on 6/11/13.
 //  Copyright (c) 2013 Ryan Nystrom. All rights reserved.
 //
 
-#import "GridMenu.h"
+#import "RNGridMenu.h"
 #import <QuartzCore/QuartzCore.h>
 #import <Accelerate/Accelerate.h>
 
-CGFloat const kGridMenuDefaultDuration = 0.25f;
-CGFloat const kGridMenuDefaultBlur = 0.3f;
-CGFloat const kGridMenuDefaultWidth = 280;
+CGFloat const kRNGridMenuDefaultDuration = 0.25f;
+CGFloat const kRNGridMenuDefaultBlur = 0.3f;
+CGFloat const kRNGridMenuDefaultWidth = 280;
 
 #pragma mark - Functions
 
@@ -257,15 +257,15 @@ CGPoint RNCentroidOfTouchesInView(NSSet *touches, UIView *view) {
 
 @end
 
-#pragma mark - GridMenuItem
+#pragma mark - RNGridMenuItem
 
-@implementation GridMenuItem
+@implementation RNGridMenuItem
 
 + (instancetype)emptyItem {
-    static GridMenuItem *emptyItem = nil;
+    static RNGridMenuItem *emptyItem = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        emptyItem = [[GridMenuItem alloc] initWithImage:nil title:nil action:nil];
+        emptyItem = [[RNGridMenuItem alloc] initWithImage:nil title:nil action:nil];
     });
 
     return emptyItem;
@@ -294,12 +294,12 @@ CGPoint RNCentroidOfTouchesInView(NSSet *touches, UIView *view) {
 }
 
 - (BOOL)isEqual:(id)object {
-    if (![object isKindOfClass:[GridMenuItem class]]) {
+    if (![object isKindOfClass:[RNGridMenuItem class]]) {
         return NO;
     }
 
     return ((self.title == [object title] || [self.title isEqualToString:[object title]]) &&
-            (self.image == (UIImage *)[object image]));
+            (self.image == [object image]));
 }
 
 - (NSUInteger)hash {
@@ -312,9 +312,9 @@ CGPoint RNCentroidOfTouchesInView(NSSet *touches, UIView *view) {
 
 @end
 
-#pragma mark - GridMenu
+#pragma mark - RNGridMenu
 
-@interface GridMenu ()
+@interface RNGridMenu ()
 
 @property (nonatomic, assign) CGPoint menuCenter;
 @property (nonatomic, strong) NSMutableArray *itemViews;
@@ -324,9 +324,9 @@ CGPoint RNCentroidOfTouchesInView(NSSet *touches, UIView *view) {
 
 @end
 
-static GridMenu *rn_visibleGridMenu;
+static RNGridMenu *rn_visibleGridMenu;
 
-@implementation GridMenu
+@implementation RNGridMenu
 
 #pragma mark - Lifecycle
 
@@ -338,21 +338,21 @@ static GridMenu *rn_visibleGridMenu;
     if ((self = [super init])) {
         _itemSize = CGSizeMake(100.f, 100.f);
         _cornerRadius = 8.f;
-        _blurLevel = kGridMenuDefaultBlur;
-        _animationDuration = kGridMenuDefaultDuration;
+        _blurLevel = kRNGridMenuDefaultBlur;
+        _animationDuration = kRNGridMenuDefaultDuration;
         _itemTextColor = [UIColor whiteColor];
         _itemFont = [UIFont boldSystemFontOfSize:14.f];
         _highlightColor = [UIColor colorWithRed:.02f green:.549f blue:.961f alpha:1.f];
-        _menuStyle = GridMenuStyleGrid;
+        _menuStyle = RNGridMenuStyleGrid;
         _itemTextAlignment = NSTextAlignmentCenter;
         _menuView = [UIView new];
         _backgroundColor = [UIColor colorWithWhite:0 alpha:0.7];
         _bounces = YES;
 
-        BOOL hasImages = [items filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(GridMenuItem *item, NSDictionary *bindings) {
+        BOOL hasImages = [items filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(RNGridMenuItem *item, NSDictionary *bindings) {
             return item.image != nil;
         }]].count > 0;
-        _menuStyle = hasImages ? GridMenuStyleGrid : GridMenuStyleList;
+        _menuStyle = hasImages ? RNGridMenuStyleGrid : RNGridMenuStyleList;
         _items = [items copy];
 
         [self setupItemViews];
@@ -364,7 +364,7 @@ static GridMenu *rn_visibleGridMenu;
 - (instancetype)initWithImages:(NSArray *)images {
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:images.count];
     for (UIImage *image in images) {
-        GridMenuItem *item = [[GridMenuItem alloc] initWithImage:image];
+        RNGridMenuItem *item = [[RNGridMenuItem alloc] initWithImage:image];
         [items addObject:item];
     }
 
@@ -374,7 +374,7 @@ static GridMenu *rn_visibleGridMenu;
 - (instancetype)initWithTitles:(NSArray *)titles {
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:titles.count];
     for (NSString *title in titles) {
-        GridMenuItem *item = [[GridMenuItem alloc] initWithTitle:title];
+        RNGridMenuItem *item = [[RNGridMenuItem alloc] initWithTitle:title];
         [items addObject:item];
     }
 
@@ -401,10 +401,10 @@ static GridMenu *rn_visibleGridMenu;
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    id<GridMenuDelegate> delegate = self.delegate;
+    id<RNGridMenuDelegate> delegate = self.delegate;
 
     if (self.selectedItemView != nil) {
-        GridMenuItem *item = self.items[self.selectedItemView.itemIndex];
+        RNGridMenuItem *item = self.items[self.selectedItemView.itemIndex];
 
         if ([delegate respondsToSelector:@selector(gridMenu:willDismissWithSelectedItem:atIndex:)]) {
             [delegate gridMenu:self
@@ -463,10 +463,10 @@ static GridMenu *rn_visibleGridMenu;
 
     [self styleItemViews];
 
-    if (self.menuStyle == GridMenuStyleGrid) {
+    if (self.menuStyle == RNGridMenuStyleGrid) {
         [self layoutAsGrid];
     }
-    else if (self.menuStyle == GridMenuStyleList) {
+    else if (self.menuStyle == RNGridMenuStyleList) {
         [self layoutAsList];
     }
 
@@ -480,7 +480,7 @@ static GridMenu *rn_visibleGridMenu;
     return YES;
 }
 
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+- (NSUInteger)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskAll;
 }
 
@@ -497,7 +497,7 @@ static GridMenu *rn_visibleGridMenu;
 - (void)setupItemViews {
     self.itemViews = [NSMutableArray array];
 
-    [self.items enumerateObjectsUsingBlock:^(GridMenuItem *item, NSUInteger idx, BOOL *stop) {
+    [self.items enumerateObjectsUsingBlock:^(RNGridMenuItem *item, NSUInteger idx, BOOL *stop) {
         RNMenuItemView *itemView = [[RNMenuItemView alloc] init];
         itemView.imageView.image = item.image;
         itemView.titleLabel.text = item.title;
@@ -545,6 +545,7 @@ static GridMenu *rn_visibleGridMenu;
         NSInteger rowLength = ceilf(itemCount / (CGFloat)rowCount);
         NSInteger rowStartIndex = i * rowLength;
 
+        NSInteger offset = 0;
         if ((i + 1) * rowLength > itemCount) {
             rowLength = itemCount - i * rowLength;
         }
@@ -749,7 +750,7 @@ static GridMenu *rn_visibleGridMenu;
 
 - (void)selectItemViewAtPoint:(CGPoint)point {
     RNMenuItemView *selectedItemView = [self itemViewAtPoint:point];
-    GridMenuItem *item = self.items[selectedItemView.itemIndex];
+    RNGridMenuItem *item = self.items[selectedItemView.itemIndex];
 
     if (selectedItemView != self.selectedItemView) {
         self.selectedItemView.backgroundColor = [UIColor clearColor];
@@ -830,7 +831,7 @@ static GridMenu *rn_visibleGridMenu;
     }
 
     if (_touchesDidMove) {
-        GridMenu *menu = [GridMenu visibleGridMenu];
+        RNGridMenu *menu = [RNGridMenu visibleGridMenu];
         [menu touchesMoved:touches withEvent:event];
     }
 }
@@ -839,7 +840,7 @@ static GridMenu *rn_visibleGridMenu;
     [super touchesEnded:touches withEvent:event];
     
     if (_touchesDidMove) {
-        GridMenu *menu = [GridMenu visibleGridMenu];
+        RNGridMenu *menu = [RNGridMenu visibleGridMenu];
         [menu touchesEnded:touches withEvent:event];
     }
 }
@@ -848,7 +849,7 @@ static GridMenu *rn_visibleGridMenu;
     [super touchesCancelled:touches withEvent:event];
     
     if (_touchesDidMove) {
-        GridMenu *menu = [GridMenu visibleGridMenu];
+        RNGridMenu *menu = [RNGridMenu visibleGridMenu];
         [menu touchesCancelled:touches withEvent:event];
     }
 }

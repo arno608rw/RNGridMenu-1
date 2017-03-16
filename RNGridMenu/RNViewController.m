@@ -36,9 +36,9 @@
     }
 }
 
-#pragma mark - GridMenuDelegate
+#pragma mark - RNGridMenuDelegate
 
-- (void)gridMenu:(GridMenu *)gridMenu willDismissWithSelectedItem:(GridMenuItem *)item atIndex:(NSInteger)itemIndex {
+- (void)gridMenu:(RNGridMenu *)gridMenu willDismissWithSelectedItem:(RNGridMenuItem *)item atIndex:(NSInteger)itemIndex {
     NSLog(@"Dismissed with item %d: %@", itemIndex, item.title);
 }
 
@@ -57,7 +57,7 @@
                         [UIImage imageNamed:@"file"],
                         [UIImage imageNamed:@"github"]
                         ];
-    GridMenu *av = [[GridMenu alloc] initWithImages:[images subarrayWithRange:NSMakeRange(0, numberOfOptions)]];
+    RNGridMenu *av = [[RNGridMenu alloc] initWithImages:[images subarrayWithRange:NSMakeRange(0, numberOfOptions)]];
     av.delegate = self;
     [av showInViewController:self center:CGPointMake(self.view.bounds.size.width/2.f, self.view.bounds.size.height/2.f)];
 }
@@ -75,7 +75,7 @@
                          @"Source Code",
                          @"Github"
                          ];
-    GridMenu *av = [[GridMenu alloc] initWithTitles:[options subarrayWithRange:NSMakeRange(0, numberOfOptions)]];
+    RNGridMenu *av = [[RNGridMenu alloc] initWithTitles:[options subarrayWithRange:NSMakeRange(0, numberOfOptions)]];
     av.delegate = self;
 //    av.itemTextAlignment = NSTextAlignmentLeft;
     av.itemFont = [UIFont boldSystemFontOfSize:18];
@@ -86,18 +86,18 @@
 - (void)showGrid {
     NSInteger numberOfOptions = 9;
     NSArray *items = @[
-                        [[GridMenuItem alloc] initWithImage:[UIImage imageNamed:@"arrow"] title:@"Next"],
-                        [[GridMenuItem alloc] initWithImage:[UIImage imageNamed:@"attachment"] title:@"Attach"],
-                        [[GridMenuItem alloc] initWithImage:[UIImage imageNamed:@"block"] title:@"Cancel"],
-                        [[GridMenuItem alloc] initWithImage:[UIImage imageNamed:@"bluetooth"] title:@"Bluetooth"],
-                        [[GridMenuItem alloc] initWithImage:[UIImage imageNamed:@"cube"] title:@"Deliver"],
-                        [[GridMenuItem alloc] initWithImage:[UIImage imageNamed:@"download"] title:@"Download"],
-                        [[GridMenuItem alloc] initWithImage:[UIImage imageNamed:@"enter"] title:@"Enter"],
-                        [[GridMenuItem alloc] initWithImage:[UIImage imageNamed:@"file"] title:@"Source Code"],
-                        [[GridMenuItem alloc] initWithImage:[UIImage imageNamed:@"github"] title:@"Github"]
+                        [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed:@"arrow"] title:@"Next"],
+                        [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed:@"attachment"] title:@"Attach"],
+                        [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed:@"block"] title:@"Cancel"],
+                        [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed:@"bluetooth"] title:@"Bluetooth"],
+                        [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed:@"cube"] title:@"Deliver"],
+                        [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed:@"download"] title:@"Download"],
+                        [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed:@"enter"] title:@"Enter"],
+                        [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed:@"file"] title:@"Source Code"],
+                        [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed:@"github"] title:@"Github"]
                         ];
 
-    GridMenu *av = [[GridMenu alloc] initWithItems:[items subarrayWithRange:NSMakeRange(0, numberOfOptions)]];
+    RNGridMenu *av = [[RNGridMenu alloc] initWithItems:[items subarrayWithRange:NSMakeRange(0, numberOfOptions)]];
     av.delegate = self;
 //    av.bounces = NO;
     [av showInViewController:self center:CGPointMake(self.view.bounds.size.width/2.f, self.view.bounds.size.height/2.f)];
@@ -106,18 +106,18 @@
 - (void)showGridWithHeaderFromPoint:(CGPoint)point {
     NSInteger numberOfOptions = 9;
     NSArray *items = @[
-                       [GridMenuItem emptyItem],
-                       [[GridMenuItem alloc] initWithImage:[UIImage imageNamed:@"attachment"] title:@"Attach"],
-                       [GridMenuItem emptyItem],
-                       [[GridMenuItem alloc] initWithImage:[UIImage imageNamed:@"bluetooth"] title:@"Bluetooth"],
-                       [[GridMenuItem alloc] initWithImage:[UIImage imageNamed:@"cube"] title:@"Deliver"],
-                       [[GridMenuItem alloc] initWithImage:[UIImage imageNamed:@"download"] title:@"Download"],
-                       [GridMenuItem emptyItem],
-                       [[GridMenuItem alloc] initWithImage:[UIImage imageNamed:@"file"] title:@"Source Code"],
-                       [GridMenuItem emptyItem]
+                       [RNGridMenuItem emptyItem],
+                       [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed:@"attachment"] title:@"Attach"],
+                       [RNGridMenuItem emptyItem],
+                       [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed:@"bluetooth"] title:@"Bluetooth"],
+                       [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed:@"cube"] title:@"Deliver"],
+                       [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed:@"download"] title:@"Download"],
+                       [RNGridMenuItem emptyItem],
+                       [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed:@"file"] title:@"Source Code"],
+                       [RNGridMenuItem emptyItem]
                        ];
 
-    GridMenu *av = [[GridMenu alloc] initWithItems:[items subarrayWithRange:NSMakeRange(0, numberOfOptions)]];
+    RNGridMenu *av = [[RNGridMenu alloc] initWithItems:[items subarrayWithRange:NSMakeRange(0, numberOfOptions)]];
     av.delegate = self;
     av.bounces = NO;
     av.animationDuration = 0.2;
@@ -138,18 +138,18 @@
 - (void)showGridWithPath {
     NSInteger numberOfOptions = 9;
     NSArray *items = @[
-                       [[GridMenuItem alloc] initWithImage:[UIImage imageNamed:@"arrow"] title:@"Next"],
-                       [[GridMenuItem alloc] initWithImage:[UIImage imageNamed:@"attachment"] title:@"Attach"],
-                       [[GridMenuItem alloc] initWithImage:[UIImage imageNamed:@"block"] title:@"Cancel"],
-                       [[GridMenuItem alloc] initWithImage:[UIImage imageNamed:@"bluetooth"] title:@"Bluetooth"],
-                       [[GridMenuItem alloc] initWithImage:[UIImage imageNamed:@"cube"] title:@"Deliver"],
-                       [[GridMenuItem alloc] initWithImage:[UIImage imageNamed:@"download"] title:@"Download"],
-                       [[GridMenuItem alloc] initWithImage:[UIImage imageNamed:@"enter"] title:@"Enter"],
-                       [[GridMenuItem alloc] initWithImage:[UIImage imageNamed:@"file"] title:@"Source Code"],
-                       [[GridMenuItem alloc] initWithImage:[UIImage imageNamed:@"github"] title:@"Github"]
+                       [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed:@"arrow"] title:@"Next"],
+                       [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed:@"attachment"] title:@"Attach"],
+                       [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed:@"block"] title:@"Cancel"],
+                       [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed:@"bluetooth"] title:@"Bluetooth"],
+                       [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed:@"cube"] title:@"Deliver"],
+                       [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed:@"download"] title:@"Download"],
+                       [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed:@"enter"] title:@"Enter"],
+                       [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed:@"file"] title:@"Source Code"],
+                       [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed:@"github"] title:@"Github"]
                        ];
     
-    GridMenu *av = [[GridMenu alloc] initWithItems:[items subarrayWithRange:NSMakeRange(0, numberOfOptions)]];
+    RNGridMenu *av = [[RNGridMenu alloc] initWithItems:[items subarrayWithRange:NSMakeRange(0, numberOfOptions)]];
     av.delegate = self;
     //    av.bounces = NO;
     [av showInViewController:self center:CGPointMake(self.view.bounds.size.width/2.f, self.view.bounds.size.height/2.f)];
