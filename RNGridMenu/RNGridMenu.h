@@ -16,4 +16,4 @@ FOUNDATION_EXPORT const unsigned char RNGridMenuVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <RNGridMenu/PublicHeader.h>
 
-
+#import <RNGridMenu/RNGridMenu.h>

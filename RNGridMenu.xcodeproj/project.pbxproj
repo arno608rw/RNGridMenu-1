@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0AFD8D2B1E7A87AE009B70CD /* RNGridMenu.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AFD8D291E7A87AE009B70CD /* RNGridMenu.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0AFD8D2F1E7A87B2009B70CD /* RNGridMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 861940731767A8B20052C089 /* RNGridMenu.m */; };
+		0AFD8D321E7A89B7009B70CD /* RNGridMenu.h in Headers */ = {isa = PBXBuildFile; fileRef = 861940721767A8B20052C089 /* RNGridMenu.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -156,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AFD8D2B1E7A87AE009B70CD /* RNGridMenu.h in Headers */,
+				0AFD8D321E7A89B7009B70CD /* RNGridMenu.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
