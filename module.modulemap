@@ -1,0 +1,5 @@
+framework module RNGridMenu {
+    umbrella header "RNGridMenu.h"
+    export *
+    module * { export * }
+}

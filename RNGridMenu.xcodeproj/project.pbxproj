@@ -16,6 +16,7 @@
 		0AFD8D271E7A87AE009B70CD /* RNGridMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RNGridMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFD8D291E7A87AE009B70CD /* RNGridMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNGridMenu.h; sourceTree = "<group>"; };
 		0AFD8D2A1E7A87AE009B70CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0AFD8D331E7A8AED009B70CD /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		3C5B2773B1869FF61C9D079F /* RNGridMenu.podspec */ = {isa = PBXFileReference; lastKnownFileType = file.podspec; path = RNGridMenu.podspec; sourceTree = "<group>"; };
 		8619404C1767A8480052C089 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8619404E1767A8480052C089 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -72,6 +73,7 @@
 		861940401767A8480052C089 = {
 			isa = PBXGroup;
 			children = (
+				0AFD8D331E7A8AED009B70CD /* module.modulemap */,
 				861940721767A8B20052C089 /* RNGridMenu.h */,
 				861940731767A8B20052C089 /* RNGridMenu.m */,
 				861940521767A8480052C089 /* example */,
@@ -297,6 +299,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "$(PROJECT_DIR)/module.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rosberry.RNGridMenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -339,6 +342,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "$(PROJECT_DIR)/module.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rosberry.RNGridMenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
