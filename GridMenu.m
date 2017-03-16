@@ -1,18 +1,18 @@
 //
-//  RNGridMenu.m
-//  RNGridMenu
+//  GridMenu.m
+//  GridMenu
 //
 //  Created by Ryan Nystrom on 6/11/13.
 //  Copyright (c) 2013 Ryan Nystrom. All rights reserved.
 //
 
-#import "RNGridMenu.h"
+#import "GridMenu.h"
 #import <QuartzCore/QuartzCore.h>
 #import <Accelerate/Accelerate.h>
 
-CGFloat const kRNGridMenuDefaultDuration = 0.25f;
-CGFloat const kRNGridMenuDefaultBlur = 0.3f;
-CGFloat const kRNGridMenuDefaultWidth = 280;
+CGFloat const kGridMenuDefaultDuration = 0.25f;
+CGFloat const kGridMenuDefaultBlur = 0.3f;
+CGFloat const kGridMenuDefaultWidth = 280;
 
 #pragma mark - Functions
 
@@ -257,15 +257,15 @@ CGPoint RNCentroidOfTouchesInView(NSSet *touches, UIView *view) {
 
 @end
 
-#pragma mark - RNGridMenuItem
+#pragma mark - GridMenuItem
 
-@implementation RNGridMenuItem
+@implementation GridMenuItem
 
 + (instancetype)emptyItem {
-    static RNGridMenuItem *emptyItem = nil;
+    static GridMenuItem *emptyItem = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        emptyItem = [[RNGridMenuItem alloc] initWithImage:nil title:nil action:nil];
+        emptyItem = [[GridMenuItem alloc] initWithImage:nil title:nil action:nil];
     });
 
     return emptyItem;
@@ -294,7 +294,7 @@ CGPoint RNCentroidOfTouchesInView(NSSet *touches, UIView *view) {
 }
 
 - (BOOL)isEqual:(id)object {
-    if (![object isKindOfClass:[RNGridMenuItem class]]) {
+    if (![object isKindOfClass:[GridMenuItem class]]) {
         return NO;
     }
 
@@ -312,9 +312,9 @@ CGPoint RNCentroidOfTouchesInView(NSSet *touches, UIView *view) {
 
 @end
 
-#pragma mark - RNGridMenu
+#pragma mark - GridMenu
 
-@interface RNGridMenu ()
+@interface GridMenu ()
 
 @property (nonatomic, assign) CGPoint menuCenter;
 @property (nonatomic, strong) NSMutableArray *itemViews;
@@ -324,9 +324,9 @@ CGPoint RNCentroidOfTouchesInView(NSSet *touches, UIView *view) {
 
 @end
 
-static RNGridMenu *rn_visibleGridMenu;
+static GridMenu *rn_visibleGridMenu;
 
-@implementation RNGridMenu
+@implementation GridMenu
 
 #pragma mark - Lifecycle
 
@@ -338,21 +338,21 @@ static RNGridMenu *rn_visibleGridMenu;
     if ((self = [super init])) {
         _itemSize = CGSizeMake(100.f, 100.f);
         _cornerRadius = 8.f;
-        _blurLevel = kRNGridMenuDefaultBlur;
-        _animationDuration = kRNGridMenuDefaultDuration;
+        _blurLevel = kGridMenuDefaultBlur;
+        _animationDuration = kGridMenuDefaultDuration;
         _itemTextColor = [UIColor whiteColor];
         _itemFont = [UIFont boldSystemFontOfSize:14.f];
         _highlightColor = [UIColor colorWithRed:.02f green:.549f blue:.961f alpha:1.f];
-        _menuStyle = RNGridMenuStyleGrid;
+        _menuStyle = GridMenuStyleGrid;
         _itemTextAlignment = NSTextAlignmentCenter;
         _menuView = [UIView new];
         _backgroundColor = [UIColor colorWithWhite:0 alpha:0.7];
         _bounces = YES;
 
-        BOOL hasImages = [items filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(RNGridMenuItem *item, NSDictionary *bindings) {
+        BOOL hasImages = [items filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(GridMenuItem *item, NSDictionary *bindings) {
             return item.image != nil;
         }]].count > 0;
-        _menuStyle = hasImages ? RNGridMenuStyleGrid : RNGridMenuStyleList;
+        _menuStyle = hasImages ? GridMenuStyleGrid : GridMenuStyleList;
         _items = [items copy];
 
         [self setupItemViews];
@@ -364,7 +364,7 @@ static RNGridMenu *rn_visibleGridMenu;
 - (instancetype)initWithImages:(NSArray *)images {
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:images.count];
     for (UIImage *image in images) {
-        RNGridMenuItem *item = [[RNGridMenuItem alloc] initWithImage:image];
+        GridMenuItem *item = [[GridMenuItem alloc] initWithImage:image];
         [items addObject:item];
     }
 
@@ -374,7 +374,7 @@ static RNGridMenu *rn_visibleGridMenu;
 - (instancetype)initWithTitles:(NSArray *)titles {
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:titles.count];
     for (NSString *title in titles) {
-        RNGridMenuItem *item = [[RNGridMenuItem alloc] initWithTitle:title];
+        GridMenuItem *item = [[GridMenuItem alloc] initWithTitle:title];
         [items addObject:item];
     }
 
@@ -401,10 +401,10 @@ static RNGridMenu *rn_visibleGridMenu;
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    id<RNGridMenuDelegate> delegate = self.delegate;
+    id<GridMenuDelegate> delegate = self.delegate;
 
     if (self.selectedItemView != nil) {
-        RNGridMenuItem *item = self.items[self.selectedItemView.itemIndex];
+        GridMenuItem *item = self.items[self.selectedItemView.itemIndex];
 
         if ([delegate respondsToSelector:@selector(gridMenu:willDismissWithSelectedItem:atIndex:)]) {
             [delegate gridMenu:self
@@ -463,10 +463,10 @@ static RNGridMenu *rn_visibleGridMenu;
 
     [self styleItemViews];
 
-    if (self.menuStyle == RNGridMenuStyleGrid) {
+    if (self.menuStyle == GridMenuStyleGrid) {
         [self layoutAsGrid];
     }
-    else if (self.menuStyle == RNGridMenuStyleList) {
+    else if (self.menuStyle == GridMenuStyleList) {
         [self layoutAsList];
     }
 
@@ -497,7 +497,7 @@ static RNGridMenu *rn_visibleGridMenu;
 - (void)setupItemViews {
     self.itemViews = [NSMutableArray array];
 
-    [self.items enumerateObjectsUsingBlock:^(RNGridMenuItem *item, NSUInteger idx, BOOL *stop) {
+    [self.items enumerateObjectsUsingBlock:^(GridMenuItem *item, NSUInteger idx, BOOL *stop) {
         RNMenuItemView *itemView = [[RNMenuItemView alloc] init];
         itemView.imageView.image = item.image;
         itemView.titleLabel.text = item.title;
@@ -749,7 +749,7 @@ static RNGridMenu *rn_visibleGridMenu;
 
 - (void)selectItemViewAtPoint:(CGPoint)point {
     RNMenuItemView *selectedItemView = [self itemViewAtPoint:point];
-    RNGridMenuItem *item = self.items[selectedItemView.itemIndex];
+    GridMenuItem *item = self.items[selectedItemView.itemIndex];
 
     if (selectedItemView != self.selectedItemView) {
         self.selectedItemView.backgroundColor = [UIColor clearColor];
@@ -830,7 +830,7 @@ static RNGridMenu *rn_visibleGridMenu;
     }
 
     if (_touchesDidMove) {
-        RNGridMenu *menu = [RNGridMenu visibleGridMenu];
+        GridMenu *menu = [GridMenu visibleGridMenu];
         [menu touchesMoved:touches withEvent:event];
     }
 }
@@ -839,7 +839,7 @@ static RNGridMenu *rn_visibleGridMenu;
     [super touchesEnded:touches withEvent:event];
     
     if (_touchesDidMove) {
-        RNGridMenu *menu = [RNGridMenu visibleGridMenu];
+        GridMenu *menu = [GridMenu visibleGridMenu];
         [menu touchesEnded:touches withEvent:event];
     }
 }
@@ -848,7 +848,7 @@ static RNGridMenu *rn_visibleGridMenu;
     [super touchesCancelled:touches withEvent:event];
     
     if (_touchesDidMove) {
-        RNGridMenu *menu = [RNGridMenu visibleGridMenu];
+        GridMenu *menu = [GridMenu visibleGridMenu];
         [menu touchesCancelled:touches withEvent:event];
     }
 }

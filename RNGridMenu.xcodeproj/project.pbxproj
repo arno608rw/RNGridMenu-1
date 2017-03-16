@@ -10,12 +10,13 @@
 		0A51A1691E7A46700048D8F1 /* GridMenu.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A51A1671E7A46700048D8F1 /* GridMenu.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0A51A16C1E7A46700048D8F1 /* GridMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A51A1651E7A46700048D8F1 /* GridMenu.framework */; };
 		0A51A16D1E7A46700048D8F1 /* GridMenu.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A51A1651E7A46700048D8F1 /* GridMenu.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0A51A1721E7A46A20048D8F1 /* RNGridMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 861940731767A8B20052C089 /* RNGridMenu.m */; };
+		0A51A1721E7A46A20048D8F1 /* GridMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 861940731767A8B20052C089 /* GridMenu.m */; };
+		0AFD8D131E7A821B009B70CD /* GridMenu.h in Headers */ = {isa = PBXBuildFile; fileRef = 861940721767A8B20052C089 /* GridMenu.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3C5B2BC0C5CE302374D589E4 /* RNGridMenu.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 3C5B2773B1869FF61C9D079F /* RNGridMenu.podspec */; };
 		8619404D1767A8480052C089 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8619404C1767A8480052C089 /* UIKit.framework */; };
 		8619404F1767A8480052C089 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8619404E1767A8480052C089 /* Foundation.framework */; };
 		861940511767A8480052C089 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 861940501767A8480052C089 /* CoreGraphics.framework */; };
-		861940741767A8B20052C089 /* RNGridMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 861940731767A8B20052C089 /* RNGridMenu.m */; };
+		861940741767A8B20052C089 /* GridMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 861940731767A8B20052C089 /* GridMenu.m */; };
 		861940791767AA8E0052C089 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 861940781767AA8E0052C089 /* QuartzCore.framework */; };
 		8619407B1767AA920052C089 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8619407A1767AA920052C089 /* Accelerate.framework */; };
 		8619408B1767CBB80052C089 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 861940821767CBB80052C089 /* arrow.png */; };
@@ -71,8 +72,8 @@
 		8619404C1767A8480052C089 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8619404E1767A8480052C089 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		861940501767A8480052C089 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		861940721767A8B20052C089 /* RNGridMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNGridMenu.h; sourceTree = "<group>"; };
-		861940731767A8B20052C089 /* RNGridMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGridMenu.m; sourceTree = "<group>"; };
+		861940721767A8B20052C089 /* GridMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridMenu.h; sourceTree = "<group>"; };
+		861940731767A8B20052C089 /* GridMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridMenu.m; sourceTree = "<group>"; };
 		861940781767AA8E0052C089 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8619407A1767AA920052C089 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		861940821767CBB80052C089 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
@@ -136,8 +137,8 @@
 		861940401767A8480052C089 = {
 			isa = PBXGroup;
 			children = (
-				861940721767A8B20052C089 /* RNGridMenu.h */,
-				861940731767A8B20052C089 /* RNGridMenu.m */,
+				861940721767A8B20052C089 /* GridMenu.h */,
+				861940731767A8B20052C089 /* GridMenu.m */,
 				861940521767A8480052C089 /* example */,
 				0A51A1661E7A46700048D8F1 /* GridMenu */,
 				8619404B1767A8480052C089 /* Frameworks */,
@@ -222,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A51A1691E7A46700048D8F1 /* GridMenu.h in Headers */,
+				0AFD8D131E7A821B009B70CD /* GridMenu.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,7 +339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A51A1721E7A46A20048D8F1 /* RNGridMenu.m in Sources */,
+				0A51A1721E7A46A20048D8F1 /* GridMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,7 +347,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				861940741767A8B20052C089 /* RNGridMenu.m in Sources */,
+				861940741767A8B20052C089 /* GridMenu.m in Sources */,
 				86C675D0176B541600000739 /* RNAppDelegate.m in Sources */,
 				86C675D1176B541600000739 /* RNViewController.m in Sources */,
 				86C675DB176B543D00000739 /* main.m in Sources */,
@@ -565,6 +567,7 @@
 				0A51A16F1E7A46700048D8F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		861940441767A8480052C089 /* Build configuration list for PBXProject "RNGridMenu" */ = {
 			isa = XCConfigurationList;
