@@ -421,7 +421,10 @@ static RNGridMenu *rn_visibleGridMenu;
         }
     }
 
-    [self dismissAnimated:YES];
+    if (_tapBackgroundToDismiss) {
+        [self dismissAnimated:YES];
+    }
+    
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {

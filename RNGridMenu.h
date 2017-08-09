@@ -104,6 +104,9 @@ typedef NS_ENUM(NSInteger, RNGridMenuStyle) {
 // An optional block that gets executed before the gridMenu gets dismissed
 @property (nonatomic, copy) dispatch_block_t dismissAction;
 
+/** whether allow tap background to dismiss the picker, default NO */
+@property BOOL tapBackgroundToDismiss;
+
 // Determine whether or not to bounce in the animation
 // default YES
 @property (nonatomic, assign) BOOL bounces;
