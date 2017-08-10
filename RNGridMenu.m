@@ -410,6 +410,7 @@ static RNGridMenu *rn_visibleGridMenu;
             [delegate gridMenu:self
    willDismissWithSelectedItem:item
                        atIndex:self.selectedItemView.itemIndex];
+            [self dismissAnimated:YES];
         }
 
         if (item.action != nil) {
